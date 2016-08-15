@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+import tornado.wsgi
+
 import logging
 
 from tornado.ioloop import IOLoop
@@ -26,6 +28,8 @@ def main():
         log.warn("Application started with '--force-json' option.  All calls will be treated as if they passed the 'Content-Type: application/json' header.  This may cause unexpected behavior.")
 
     # server startup
+    if options.wsgi_mode:
+        application = tornado.wsgi.WSGIAdapter(application)
     if options.unix_socket:
         unix_socket_server(application, options)
     elif options.certfile and options.keyfile:

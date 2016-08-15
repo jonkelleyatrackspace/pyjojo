@@ -42,6 +42,9 @@ Use the apache htpasswd utility to create your htpasswd files."""
     parser.add_option('-u', '--unix-socket', action="store", dest="unix_socket", default=None,
                       help="Bind pyjojo to a unix domain socket")
 
+    parser.add_option('-w', '--wsgi-mode', action="store_true", dest="wsgi_mode", default=None,
+                      help="Run as WSGI application with WSGIAdapter")
+
     options, args = parser.parse_args()
 
     # TODO: only do this if they specify the ssl certfile and keyfile
